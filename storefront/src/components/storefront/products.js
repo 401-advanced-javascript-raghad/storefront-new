@@ -2,20 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import {activate} from '../../store/Categories';
 
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { add } from '../../store/Cart';
+
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -66,19 +63,19 @@ const Products = props => {
                                 titleTypographyProps={{ align: 'center' }}
                             />
                             <CardContent>
-                                <Typography variant="h5" color="textPrimary">
+                                <Typography variant="h6" color="textPrimary">
                                     Category: {product.category}
                                 </Typography>
-                                <Typography variant="h5" color="textPrimary">
+                                <Typography variant="h6" color="textPrimary">
                                     Price: {product.price}$
                                 </Typography>
-                                <Typography variant="h5" color="textPrimary">
+                                <Typography variant="h6" color="textPrimary">
                                     inStock: {product.inStock}
                                 </Typography>
 
                             </CardContent>
                             <CardActions>
-                                <Button variant='outlined' color="primary">ADD TO CART</Button>
+                                <Button variant='outlined' color="primary"  onClick={() => props.add(product.name)} key={idx}>ADD TO CART</Button>
                                 <Button variant='outlined' color="primary">VIEW DETAILS</Button>
 
                             </CardActions>
@@ -100,5 +97,7 @@ const mapStateToProps = state => ({
     categories: state.categories
 
 });
+const mapDispatchToProps = { add };
 
-export default connect(mapStateToProps)(Products);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
