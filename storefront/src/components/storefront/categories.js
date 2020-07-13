@@ -16,9 +16,8 @@ const Categories = props => {
 
 const mapStateToProps = state => ({
     categories: state.categories,
-    products:state.products
 });
 
-const mapDispatchToProps = {activate};
+const mapDispatchToProps = { activate };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
