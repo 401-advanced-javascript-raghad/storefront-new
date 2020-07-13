@@ -13,6 +13,7 @@ const Categories = props => {
         </section>
     )
 }
+ 
 
 const mapStateToProps = state => ({
     categories: state.categories,

@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
 
 h1 {
-    background-color: wheat;
-    box-shadow: pink;
-    padding: 3%;
+    background-color: #84b58e;
+    color: #f9fae8;
+    padding: 2%;
+    font-family: 'Kalam', cursive;
+    margin-top: 0%;
+
+}
+
+ul {
+    display: inline-flex;
+
+        li {
+            margin: 9%;
+        }
 }
