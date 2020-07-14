@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-// import {activate} from '../../store/Categories';
-
+import { getAction } from '../../store/actions';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -12,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { add } from '../../store/Cart';
+import * as actions from '../../store/actions'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,53 +52,65 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Products = props => {
-    return (
-        < Container maxWidth="md" component="main" >
-            {props.categories.products.map((product, idx) => {
-                if (product.category === props.categories.activeCategory && product.inStock > 0) {
-                    return (
-                        < Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card>
-                            <CardHeader title={product.name}
-                                titleTypographyProps={{ align: 'center' }}
-                            />
-                            <CardContent>
-                                <Typography variant="h6" color="textPrimary">
-                                    Category: {product.category}
+  const fetchData = (e) => {
+    e && e.preventDefault();
+    props.get();
+  }
+  useEffect(() => fetchData(), []);
+
+  return (
+    < Container maxWidth="md" component="main" >
+      {props.categories.products.map((product, idx) => {
+        if (product.category === props.categories.activeCategory && product.inStock > 0) {
+          return (
+            < Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card>
+                  <CardHeader title={product.name}
+                    titleTypographyProps={{ align: 'center' }}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" color="textPrimary">
+                      Category: {product.category}
+                    </Typography>
+                    <Typography variant="h6" color="textPrimary">
+                      Price: {product.price}$
                                 </Typography>
-                                <Typography variant="h6" color="textPrimary">
-                                    Price: {product.price}$
-                                </Typography>
-                                <Typography variant="h6" color="textPrimary">
-                                    inStock: {product.inStock}
-                                </Typography>
+                    <Typography variant="h6" color="textPrimary">
+                      inStock: {product.inStock}
+                    </Typography>
 
-                            </CardContent>
-                            <CardActions>
-                                <Button variant='outlined' color="primary"  onClick={() => props.add(product)} key={idx}>ADD TO CART</Button>
-                                <Button variant='outlined' color="primary">VIEW DETAILS</Button>
+                  </CardContent>
+                  <CardActions>
+                    <Button variant='outlined' color="primary" onClick={() => props.add(product)} key={idx}>ADD TO CART</Button>
+                    <Button variant='outlined' color="primary">VIEW DETAILS</Button>
 
-                            </CardActions>
-                        </Card>
-                    </Grid>
+                  </CardActions>
+                </Card>
+              </Grid>
 
 
-</Grid>
-    )
-}
-              
-         } )}
-        </Container >
-    )
+            </Grid>
+          )
+        }
+
+      })}
+    </Container >
+  )
 }
 
 
 const mapStateToProps = state => ({
-    categories: state.categories
+  categories: state.categories,
+  data: state.data
 
 });
-const mapDispatchToProps = { add };
+
+const mapDispatchToProps = (dispatch, getState,) => ({
+  get: ()=> dispatch(actions.getRemoteData()),
+  add: actions.add
+});
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

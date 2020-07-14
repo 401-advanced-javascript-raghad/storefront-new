@@ -5,15 +5,15 @@ let initialState = {
     { name: 'clothing', displayName: 'Clothing', description: 'description' },
   ],
   products: [
-    { name: 'TV', category: 'electronics', price: 699.00, inStock: 5, description: 'description' },
-    { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15, description: 'description' },
-    { name: 'Shirt', category: 'clothing', price: 9.00, inStock: 25, description: 'description' },
-    { name: 'Socks', category: 'clothing', price: 12.00, inStock: 10, description: 'description' },
-    { name: 'Apples', category: 'food', price: .99, inStock: 500, description: 'description' },
-    { name: 'Eggs', category: 'food', price: 1.99, inStock: 12, description: 'description' },
-    { name: 'Bread', category: 'food', price: 2.39, inStock: 90, description: 'description' },
+    // { name: 'TV', category: 'electronics', price: 699.00, inStock: 5, description: 'description' },
+    // { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15, description: 'description' },
+    // { name: 'Shirt', category: 'clothing', price: 9.00, inStock: 25, description: 'description' },
+    // { name: 'Socks', category: 'clothing', price: 12.00, inStock: 10, description: 'description' },
+    // { name: 'Apples', category: 'food', price: .99, inStock: 500, description: 'description' },
+    // { name: 'Eggs', category: 'food', price: 1.99, inStock: 12, description: 'description' },
+    // { name: 'Bread', category: 'food', price: 2.39, inStock: 90, description: 'description' },
   ],
-  activeCategory: 'electronics'
+  activeCategory: ''
 };
 
 
@@ -34,6 +34,9 @@ export default (state = initialState, action) => {
         }
       });
       return { categories: state.categories, products: state.products, activeCategory: state.activeCategory }
+      
+      case 'GET':
+        return { categories: state.categories, products: payload.result, activeCategory: state.activeCategory };
   }
 
 }
