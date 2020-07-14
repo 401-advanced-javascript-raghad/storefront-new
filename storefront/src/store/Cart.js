@@ -9,7 +9,8 @@ export default (state = initialState, action) => {
 
     switch (type){
         case 'ADD-TO-CART' : 
-
+            let ln = state.products.length;
+            payload = {...payload ,id:ln+1};
         return {
              products:[...state.products,payload],
              count : state.count + 1
@@ -17,7 +18,7 @@ export default (state = initialState, action) => {
         case 'REMOVE':
           let newState = {...state};
           let products = newState.products.filter(product =>{
-              if(payload !== product ){
+              if(payload !== product.id ){
                   return product;
               }                    
         })
@@ -40,9 +41,9 @@ export const add = (name) => {
     }
 }
 
-export const remove = (name) => {
+export const remove = (id) => {
     return {
         type: 'REMOVE',
-        payload: name
+        payload: id
     }
 }

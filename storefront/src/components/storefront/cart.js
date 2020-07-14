@@ -13,9 +13,9 @@ const Cart = props => {
             {props.cart.products.map((product, idx) =>
                 <div key={idx}>
                     <Link className="a" color="primary" onClick={() => props.add(product)} >
-                        {product}
+                        {product.name}
                     </Link>
-                    <Button onClick={() => props.remove(product)} >x</Button>
+                    <Button onClick={() => props.remove(product.id)} >x</Button>
                 </div>
 
             )}
