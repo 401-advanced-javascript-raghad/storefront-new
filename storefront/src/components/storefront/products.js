@@ -54,7 +54,7 @@ const Products = props => {
     return (
         < Container maxWidth="md" component="main" >
             {props.categories.products.map((product, idx) => {
-                if (product.category === props.categories.activeCategory) {
+                if (product.category === props.categories.activeCategory && product.inStock > 0) {
                     return (
                         < Grid>
                     <Grid item xs={12} sm={6} md={4}>
