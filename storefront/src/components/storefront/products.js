@@ -75,7 +75,7 @@ const Products = props => {
 
                             </CardContent>
                             <CardActions>
-                                <Button variant='outlined' color="primary"  onClick={() => props.add(product.name)} key={idx}>ADD TO CART</Button>
+                                <Button variant='outlined' color="primary"  onClick={() => props.add(product)} key={idx}>ADD TO CART</Button>
                                 <Button variant='outlined' color="primary">VIEW DETAILS</Button>
 
                             </CardActions>
